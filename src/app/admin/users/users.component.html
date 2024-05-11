@@ -1,0 +1,157 @@
+<section class="full-page">
+  <section class="mt-4">
+    <div class="page-title w-100 bg-success-main">
+      <div class="container">
+        <div class="row justify-content-between align-items-center px-4">
+          <div class="col-md-6">
+            <div>
+              <h1>Users <span>Item</span></h1>
+              <p>You can now add your items that any user can order it from the Application and you can edit</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="text-end">
+              <img class="w-75" src="../../../assets/Images/img-cate.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center p-4">
+      <div>
+        <h3>Users Table Details</h3>
+        <p>You can check all details</p>
+      </div>
+      <div class="actions ">
+        <span (click)="Cart()" class="shadow" [class]="showCart? 'bg-success-main': 'bg-white'">
+          <i class="fa-solid fa-table-cells-large fa-2x" [class]="showCart? 'text-white': 'success-text'"></i>
+        </span>
+        <span (click)="Table()" class="shadow" [class]="showTable?'bg-success-main': 'bg-white'">
+          <i class="fa-solid fa-list fa-2x " [class]="showTable?'text-white': 'success-text'"></i>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Search By</mat-label>
+          <mat-select [(ngModel)]="searchParam" (selectionChange)="getAllUsers()">
+            <mat-option value = "userName">Name</mat-option>
+            <mat-option value = "email">Email</mat-option>
+            <mat-option value = "country">Country</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="example-form-field" class="w-100" appearance="outline">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="searchValue" (keyup.enter)="getAllUsers()">
+          <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear"
+          (click)="searchValue='';getAllUsers()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select multiple [(ngModel)]="roleIds" (selectionChange)="getAllUsers()">
+            <mat-option value = "0">All</mat-option>
+            <mat-option value = "1">Admin</mat-option>
+            <mat-option value = "2">User</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div *ngIf="showCart" class="row g-4">
+      <div *ngFor="let item of usersList.data" class="col-md-4 ">
+        <div class="rec-holder shadow">
+          <i (click)="openDialogDelete(item.id)" class="fa-solid fa-trash-can fa-2x text-danger"></i>
+          <img  [src]="item?.imagePath? imgUrl + item.imagePath: emptyImge" alt="">
+          <div class="info">
+            <h3>{{item.userName}}</h3>
+            <p>{{item.email}}</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span>{{item.phoneNumber}}</span>
+              <span>{{item.country}}</span>
+            </div>
+            <p>Role: <span class="fw-bold">{{item.group.name}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <table *ngIf="showTable" class="table table-hover text-center">
+      <thead>
+        <th class="py-4">Name</th>
+        <th class="py-4">Image</th>
+        <th class="py-4">email</th>
+        <th class="py-4">Phone</th>
+        <th class="py-4">Country</th>
+        <th class="py-4">role</th>
+        <th class="py-4">Actions</th>
+      </thead>
+
+      <tbody>
+        <!-- <ng-container *ngIf="listData.length>0"> -->
+        <tr *ngFor="let item of usersList.data">
+          <td>{{item.userName}}</td>
+          <td class="w-25"> <img class="w-25" [src]="item.imagePath? imgUrl + item.imagePath:emptyImge" alt=""> </td>
+          <td>{{item.email}}</td>
+          <td>{{item.phoneNumber}}</td>
+          <td>{{item.country}}</td>
+          <td>{{item.group.name}}</td>
+
+          <td>
+
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu  #menu="matMenu">
+            <button (click)="openViewDialog(item)" mat-menu-item>
+              <mat-icon>visibility</mat-icon>
+              <span>View</span>
+            </button>
+            <button (click)="openDialogDelete(item.id)" mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+            </mat-menu>
+
+
+          </td>
+        </tr>
+        <!-- </ng-container> -->
+      </tbody>
+
+    </table>
+
+
+
+
+  <mat-paginator #paginator
+    class="demo-paginator"
+    (page)="handlePageEvent($event)"
+    [length]="usersList.totalNumberOfRecords"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+    [pageIndex]="pageNumber"
+    aria-label="Select page">
+  </mat-paginator>
+</section>

@@ -1,0 +1,51 @@
+<section class="auth">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-8">
+        <div class="auth-card">
+          <div class="text-center mx-auto">
+            <img src="./assets/Images/4 4.svg" alt="">
+          </div>
+
+          <h1>Log In</h1>
+          <p>Welcome Back! Please enter your details</p>
+
+          <form [formGroup]="loginForm" (ngSubmit)="sendLoginForm(loginForm)">
+            <div class="input-group form-control p-0 mb-3 mt-4">
+              <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                <i class="fa-solid fa-at"></i>
+              </span>
+              <input type="text" formControlName="email" class="w-75 py-2" placeholder="Enter Your E-mail" aria-label="Username" aria-describedby="basic-addon1">
+
+            </div>
+            <div *ngIf="loginForm.get('email')?.errors&&loginForm.get('email')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="loginForm.get('email')?.getError('required')">* Email is Requierd</p>
+              <p *ngIf="loginForm.get('email')?.getError('email')">* Email Invalid Format</p>
+            </div>
+
+            <div class="input-group form-control p-0 mb-3 align-items-center">
+              <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input [type]="hide? 'password' : 'text'" formControlName="password" class="py-2 flex-grow-1" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+              <span (click)="hide = !hide">
+                <i class="fa-solid" [class]="hide? 'fa-eye-slash': 'fa-eye'"></i>
+              </span>
+
+            </div>
+            <div *ngIf="loginForm.get('password')?.errors&&loginForm.get('password')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="loginForm.get('password')?.getError('required')">* Password is Requierd</p>
+              <p *ngIf="loginForm.get('password')?.getError('pattern')">* Must be Contain Uppercase Letter, Lowercase Letter, Numeric Value, Special Symbol(!@#$%^&*_+=-) and the total length should be between 8 - 16</p>
+            </div>
+
+            <div class="links">
+              <a class="text-gray" routerLink="register">Register Now?</a>
+              <a class="text-main" routerLink="forgotPass">Forgot Password?</a>
+            </div>
+            <button [disabled]="loginForm.invalid" class="success w-100 mt-4">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

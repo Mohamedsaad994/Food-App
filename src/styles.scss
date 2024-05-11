@@ -1,0 +1,275 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$food-app-primary: mat.define-palette(mat.$indigo-palette);
+$food-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$food-app-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$food-app-theme: mat.define-light-theme((
+  color: (
+    primary: $food-app-primary,
+    accent: $food-app-accent,
+    warn: $food-app-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($food-app-theme);
+
+$succes-main:#009247;
+$text-main:#4AA35A;
+
+.bg-dark-main{
+  background-color: #1f263e;
+}
+.bg-success-main{
+  background-color:$succes-main;
+}
+
+.bg-light{
+  background-color: #F0FFEF !important;
+}
+.success-text{
+  color:$succes-main
+}
+.main-text{
+  color: #009247;
+  ;
+}
+
+.heading-color{
+  color:#494949
+}
+
+.p-color{
+  color:#8391A1
+}
+.auth-card{
+
+  $text-gray:#3A3A3D;
+  background-color: #fff;
+  padding: 2rem 4rem;
+  border-radius: 16px;
+
+  img{
+    width:60%
+  }
+  h1{
+    font-size: 25px;
+    color: #494949;
+  }
+  h1 + p{
+    color: hsla(0, 0%, 29%, 0.6);
+  }
+  i{
+    color:#8391A1
+  }
+  .input-group, input{
+    background-color: #F7F7F7 !important;
+    outline: none;
+    border: none;
+    margin:0 10px
+  }
+
+  .links{
+    display:flex;
+    justify-content: space-between;
+    .text-main{
+      color:$text-main
+    }
+    .text-gray{
+      color:$text-gray
+    }
+    a{
+      text-decoration: none;
+    }
+  }
+}
+
+
+@media (max-width: 991.98px) {
+  .auth-card{
+
+    img{
+      width:80%
+    }
+  }
+}
+@media (max-width: 575.98px) {
+
+  .auth-card{
+
+    img{
+      width:100%
+    }
+    h1{
+      font-size: 20px;
+    }
+    p{
+      font-size: 14px;
+    }
+
+    .input-group{
+      padding: 8px 5px !important;
+    }
+    .input-group input{
+      width: 85% !important;
+      font-size: 14px;
+    }
+
+    .span{
+      display: none;
+    }
+
+    .links{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .links a{
+      font-size: 14px;
+    }
+    .links a:first-child{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+button{
+  border:none;
+  border-radius: 8px;
+  padding: 0.7rem 0.5rem;
+  transition: 0.4s;
+  &.success{
+    background-color:$text-main;
+    color:#fff;
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+  &.success-main{
+    background-color:$succes-main;
+    color:#fff;
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+  &.success-outline{
+    background-color: transparent;
+    color:#4AA35A;
+    border: 1px solid #4AA35A;
+    &:hover{
+      background-color: #4AA35A;
+      color:#fff
+    }
+  }
+
+  &.dark{
+    background-color:#494949;
+    color:#fff;
+    &:hover{
+      opacity: 0.7;
+    }
+  }
+  &:disabled{
+    cursor: not-allowed;
+  }
+}
+
+.m-input{
+  border:none;
+  outline:none;
+  width:80%
+}
+
+.page-title{
+
+  color:#fff;
+  border-radius: 15px;
+  span{
+    font-weight: 300;
+    color:#eee
+  }
+}
+
+.actions{
+  width:170px;
+  display: flex;
+  justify-content: space-between;
+
+
+  span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:70px;
+    height: 70px;
+    border-radius:20px;
+  }
+}
+
+.rec-holder{
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 300px;
+  text-align: center;
+  i{
+    position: absolute;
+    top:-20px;
+    right:-20px;
+    color:$succes-main;
+    transition: 0.5s;
+  }
+
+  img{
+    display: block;
+    width:100%;
+    height: 100% !important;
+
+  }
+  .info{
+    position: absolute;
+    background-color:#009247a7;
+    color:#fff;
+    bottom:-100%;
+    width: 100%;
+    margin:auto;
+    height: auto;
+    padding: 10px 20px;
+    // border: 1px solid #ccc;
+    border-radius: 20px;
+    transition: 0.5s;
+
+  }
+
+  &:hover .info{
+    bottom: 0;
+  }
+  &:hover i{
+    right: 20px;
+    top: 20px;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

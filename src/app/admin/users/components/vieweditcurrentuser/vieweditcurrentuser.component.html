@@ -1,0 +1,107 @@
+<section class="text-center py-4">
+
+  <div class="text-end mx-4">
+    <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <h2 class="heading-color ps-4 text-start">Edit your Details</h2>
+
+  <div class="position-relative img-holder">
+    <img class="mb-4" [src]="data.imagePath? imgUrl + data.imagePath:emptyImge" alt="">
+    <div class="position-absolute w-100 h-100 top-0 end-0">
+      <ngx-dropzone-image-preview class="img"  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+        <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+      </ngx-dropzone-image-preview>
+    </div>
+  </div>
+  <form [formGroup]="updateForm" (ngSubmit)="updateUserDetails(updateForm)">
+
+  <ngx-dropzone (change)="onSelect($event)">
+      <ngx-dropzone-label>
+        <i class="fa-solid fa-camera fa-2x heading-color"></i>
+      </ngx-dropzone-label>
+    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-preview> -->
+
+  </ngx-dropzone>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="input-group mb-3 form-control p-0">
+        <span class="input-group-text py-3 me-2" id="basic-addon1">
+          <i class="fa-solid fa-user"></i>
+        </span>
+        <input type="text" formControlName="userName" [(ngModel)]="data.userName" class="m-input py-2 w-75" placeholder="UserName" aria-label="Username" aria-describedby="basic-addon1">
+
+      </div>
+      <div *ngIf="updateForm.get('userName')?.errors&&updateForm.get('userName')?.touched" class="warning text-danger text-center fw-bold">
+        <p *ngIf="updateForm.get('userName')?.getError('required')">* userName is Requierd</p>
+        <p *ngIf="updateForm.get('userName')?.getError('pattern')">* The userName must contain characters 4,8 and end with one numeric without spaces.</p>
+      </div>
+    </div>
+
+
+    <div class="col-md-8 mx-auto">
+
+      <div class="input-group mb-3 form-control p-0">
+        <span class="input-group-text py-3 me-2" id="basic-addon1">
+          <i class="fa-solid fa-at"></i>
+        </span>
+        <input type="email" formControlName="email" [(ngModel)]="data.email" class="m-input py-2 w-75" placeholder="Enter Your E-mail" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div *ngIf="updateForm.get('email')?.errors&&updateForm.get('email')?.touched" class="warning text-danger text-center fw-bold">
+        <p *ngIf="updateForm.get('email')?.getError('required')">* Email is Requierd</p>
+        <p *ngIf="updateForm.get('email')?.getError('email')">* Email Invalid Format</p>
+      </div>
+
+    </div>
+
+    <div class="col-md-8 mx-auto">
+
+      <div class="input-group mb-3 form-control p-0">
+        <span class="input-group-text py-3 me-2" id="basic-addon1">
+          <i class="fa-solid fa-globe"></i>
+        </span>
+        <input type="text" formControlName="country" [(ngModel)]="data.country" class="m-input py-2 w-75" placeholder="Country" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div *ngIf="updateForm.get('country')?.errors&&updateForm.get('country')?.touched" class="warning text-danger text-center fw-bold">
+        <p *ngIf="updateForm.get('country')?.getError('required')">* Country is Requierd</p>
+      </div>
+
+    </div>
+
+    <div class="col-md-8 mx-auto">
+      <div class="input-group mb-3 form-control p-0">
+        <span class="input-group-text py-3 me-2" id="basic-addon1">
+          <i class="fa-solid fa-mobile-screen"></i>
+        </span>
+        <input type="tel" formControlName="phoneNumber" [(ngModel)]="data.phoneNumber" class="m-input py-2 w-75" placeholder="PhoneNumber" aria-label="Username" aria-describedby="basic-addon1">
+
+      </div>
+      <div *ngIf="updateForm.get('phoneNumber')?.errors&&updateForm.get('phoneNumber')?.touched" class="warning text-danger text-center fw-bold">
+        <p *ngIf="updateForm.get('phoneNumber')?.getError('required')">* Phone is Requierd</p>
+        <p *ngIf="updateForm.get('phoneNumber')?.getError('pattern')">* Accept only Egyption Phone Numbers</p>
+      </div>
+    </div>
+
+    <div class="col-md-8 mx-auto">
+      <div class="input-group mb-3 p-0 form-control align-items-center">
+        <span class="input-group-text py-3 me-2" id="basic-addon1">
+          <i class="fa-solid fa-lock"></i>
+        </span>
+        <input [type]="hide1? 'password': 'text'" formControlName="confirmPassword" class="m-input flex-grow-1 py-2" placeholder="confirmPassword" aria-label="Username" aria-describedby="basic-addon1">
+        <span (click)="hide1 = !hide1">
+          <i class="fa-solid" [class]="hide1? 'fa-eye-slash': 'fa-eye'"></i>
+        </span>
+      </div>
+      <div *ngIf="updateForm.get('confirmPassword')?.errors&&updateForm.get('confirmPassword')?.touched" class="warning text-danger text-center fw-bold">
+        <p *ngIf="updateForm.get('confirmPassword')?.getError('required')">* Confirm Password is Requierd</p>
+        <p *ngIf="updateForm.get('confirmPassword')?.getError('pattern')">* Must be Contain Uppercase Letter, Lowercase Letter, Numeric Value, Special Symbol(!@#$%^&*_+=-) and the total length should be between 8 - 16</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-end pe-4">
+    <button class="success-main">Save</button>
+  </div>
+  </form>
+</section>
