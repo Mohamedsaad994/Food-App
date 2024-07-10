@@ -1,0 +1,60 @@
+<section class="px-4 py-3 pb-0">
+  <h1 class="heading-color mb-3 text-center">{{heading}}</h1>
+  <form [formGroup]="recipeForm" (ngSubmit)="sendRecipeForm()">
+    <input formControlName="name" class="form-control mb-3 p-3" type="text" placeholder="Recipe Name">
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Tags</mat-label>
+          <mat-select formControlName="tagId">
+            <mat-option *ngFor="let tag of tagsList" [value]="tag.id">{{tag.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Categories</mat-label>
+          <mat-select multiple formControlName="categoriesIds">
+            <mat-option *ngFor="let category of categoriesList" [value]="category.id">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <input class="form-control mb-3 p-3" type="number" placeholder="Price Of Recipe" formControlName="price">
+
+    <textarea class="form-control mb-3" name="" id="" cols="30" rows="5" placeholder="Description" formControlName="description"></textarea>
+
+    <ngx-dropzone  (change)="onSelect($event)" class="border-success">
+      <ngx-dropzone-label>
+        <i class="fa-solid fa-arrow-up-from-bracket fa-2x"></i>
+        <div>
+          <span class="main-text">Choose a Recipe Image</span> to Upload
+        </div>
+      </ngx-dropzone-label>
+    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-preview> -->
+    <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngIf="imgSrc"
+    [file]="imgSrc"
+    [removable]="true"
+    (removed)="onRemove(imgSrc)" class="w-100">
+      <!-- <img [src]="url" alt=""> -->
+      <!-- {{url}} -->
+      <!-- <ngx-dropzone-label>({{ imgSrc }})</ngx-dropzone-label> -->
+      <!-- <ngx-dropzone-label></ngx-dropzone-label> -->
+    </ngx-dropzone-image-preview>
+  </ngx-dropzone>
+  <!-- <div>
+    <img class="w-100" [src]="files[0]" alt="">
+  </div> -->
+
+  <div class="text-center mt-5">
+    <button class="success-main w-75">
+      Save
+    </button>
+  </div>
+  </form>
+</section>

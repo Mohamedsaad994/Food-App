@@ -1,0 +1,30 @@
+<section [class]="custom? '': 'minwidth'" class=" bg-dark-main vh-100 side">
+
+  <div (click)="custom = !custom" class="pt-5">
+    <img  [class]="custom? '': 'imgwidth'" src="./assets/Images/3.png" alt="">
+  </div>
+  <div>
+    <ul [class]="custom? '': 'text-center'" class="px-0 mt-5"> 
+      <ng-container *ngFor="let item of menu">
+        <li *ngIf="item.isActive">
+          <a [routerLink]="item.link" routerLinkActive="active"  class="item d-block">
+            <span><i [class]="item.icon"></i></span>
+            <span [class]="custom? '': 'd-none'">{{item.text}}</span>
+          </a>
+        </li>
+      </ng-container>
+      <li>
+        <a (click)="openDialog()" class="item d-block">
+          <span><i class="fa-solid fa-unlock"></i></span>
+          <span [class]="custom? '': 'd-none'">Change Password</span>
+        </a>
+      </li>
+      <li>
+        <a (click)="signOut()" class="item d-block">
+          <span><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span [class]="custom? '': 'd-none'">Log Out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

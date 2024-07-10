@@ -1,0 +1,39 @@
+section{
+  width:700px;
+  overflow:hidden;
+  img{
+    width:150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  a{
+    cursor: pointer;
+  }
+
+  [_nghost-ng-c3821590306] img[_ngcontent-ng-c3821590306]{
+    position: absolute;
+    border-radius: 50%;
+    opacity: .8;
+  }
+}
+
+[_nghost-ng-c2040221903]{
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top: 16%;
+  left: 56%;
+  background: transparent;
+  outline: none;
+  border: none;
+}
+.img-holder{
+  width:150px;
+  height: 150px;
+  margin:auto;
+  border-radius: 50%;
+  overflow: hidden;
+
+}
+
+

@@ -1,0 +1,30 @@
+
+
+
+<section class="text-center d-flex flex-column justify-content-between p-4">
+  <a class="text-danger text-end link1" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="h5 m-0">Check Your Mail and Enter OTP</h3>
+    <a class="text-danger link2" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <div>
+    <div class="input-group mb-3 form-control p-0 ">
+      <span class="input-group-text me-2" id="basic-addon1">
+        <i class="fa-solid fa-at"></i>
+      </span>
+      <input type="email" [(ngModel)]="data.mail" class="m-input py-2" placeholder="Enter Your E-mail">
+    </div>
+    <div class="input-group mb-3 form-control p-0">
+      <span class="input-group-text me-2" id="basic-addon1">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </span>
+      <input type="text" [(ngModel)]="data.code" class="m-input py-2" placeholder="OTP Code" >
+    </div>
+  </div>
+
+  <div class="text-end">
+    <button class="success w-25" [mat-dialog-close]="data" >Ok</button>
+  </div>
+
+</section>

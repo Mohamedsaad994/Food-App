@@ -1,0 +1,16 @@
+<section class="py-4">
+  <div class="text-end px-4">
+    <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <div class="container">
+    <img [src]="data.imagePath? imgUrl + data.imagePath:emptyImge" alt="">
+    <h1>{{data.name}}</h1>
+    <p>{{data.description}}</p>
+    <p>Price: <span class="fw-bold">{{data.price | currency:' EGP '}}</span></p>
+    <p>Category: <span *ngFor="let category of data.category" class="fw-bold">{{category.name}}</span></p>
+    <p>Tag: <span class="fw-bold">{{data.tag.name}}</span></p>
+    <div>
+      <button class="success-main w-75" (click)="addToFav(data.id)">Add To Favorite</button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+<section class="auth">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-8">
+        <div class="auth-card">
+          <div class="text-center mx-auto mb-4">
+            <img src="./assets/Images/4 4.svg" alt="">
+          </div>
+
+          <h1> Reset  Password</h1>
+          <p>Please Enter Your Otp  or Check Your Inbox </p>
+
+          <form [formGroup]="resetForm" (ngSubmit)="sendResetForm()">
+            <div class="input-group form-control p-0 mb-3">
+              <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                <i class="fa-solid fa-at"></i>
+              </span>
+              <input type="text" formControlName="email" class=" py-2" placeholder="Enter Your E-mail" aria-label="Username" aria-describedby="basic-addon1">
+
+            </div>
+            <div *ngIf="resetForm.get('email')?.errors&&resetForm.get('email')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="resetForm.get('email')?.getError('required')">* Email is Requierd</p>
+              <p *ngIf="resetForm.get('email')?.getError('email')">* Email Invalid Format</p>
+            </div>
+
+            <div class="input-group form-control p-0 mb-3 align-items-center">
+              <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input [type]="hide1? 'password' : 'text'" formControlName="password" class="py-2 flex-grow-1" placeholder="New Password" aria-label="Username" aria-describedby="basic-addon1">
+              <span (click)="hide1 = !hide1">
+                <i class="fa-solid" [class]="hide1? 'fa-eye-slash': 'fa-eye'"></i>
+              </span>
+
+            </div>
+            <div *ngIf="resetForm.get('password')?.errors&&resetForm.get('password')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="resetForm.get('password')?.getError('required')">* Password is Requierd</p>
+              <p *ngIf="resetForm.get('password')?.getError('pattern')">* Must be Contain Uppercase Letter, Lowercase Letter, Numeric Value, Special Symbol(!@#$%^&*_+=-) and the total length should be between 8 - 16</p>
+            </div>
+
+            <div class="input-group form-control p-0 mb-3 align-items-center">
+              <span class="input-group-text py-3 span me-2" id="basic-addon1">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input [type]="hide2? 'password' : 'text'" formControlName="confirmPassword" class="py-2 flex-grow-1" placeholder="confirm New Password" aria-label="Username" aria-describedby="basic-addon1">
+              <span (click)="hide2 = !hide2">
+                <i class="fa-solid" [class]="hide2? 'fa-eye-slash': 'fa-eye'"></i>
+              </span>
+
+            </div>
+            <div *ngIf="resetForm.get('confirmPassword')?.errors&&resetForm.get('confirmPassword')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="resetForm.get('confirmPassword')?.getError('required')">* Confirm Password is Requierd</p>
+              <p *ngIf="resetForm.get('confirmPassword')?.getError('mismatch')">* Password confirmation Is incorrected</p>
+            </div>
+
+
+            <div class="input-group form-control p-0">
+              <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                <i class="fa-solid fa-at"></i>
+              </span>
+              <input type="text" formControlName="seed" class=" py-2" placeholder="Enter OTP Code" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <div *ngIf="resetForm.get('seed')?.errors&&resetForm.get('seed')?.touched" class="warning text-danger text-center fw-bold">
+              <p *ngIf="resetForm.get('seed')?.getError('required')">* OTP Code is Requierd</p>
+            </div>
+            <button [disabled]="resetForm.invalid" class="success w-100 mt-4">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

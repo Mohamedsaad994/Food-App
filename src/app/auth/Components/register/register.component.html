@@ -1,0 +1,145 @@
+<section class="auth">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-10">
+        <div class="auth-card">
+          <div class="text-center mx-auto w-75">
+            <img src="./assets/Images/4 4.svg" alt="">
+          </div>
+
+          <h1>Register Now</h1>
+          <p>Welcome Back! Please enter your details</p>
+
+          <form [formGroup]="registerForm" (ngSubmit)="sendRegisterForm(registerForm)">
+            <div class="row mt-4">
+
+              <div class="col-md-12 mb-4">
+                <div class=" mx-auto text-center">
+                  <ngx-dropzone class="drop-zone" (change)="onSelect($event)">
+                      <ngx-dropzone-label>
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                        Upload Your Image Here
+                      </ngx-dropzone-label>
+                    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)"> -->
+                      <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                    <!-- </ngx-dropzone-preview> -->
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" [removable]="true" (removed)="onRemove(f)" *ngFor="let f of files" [file]="f">
+                      <!-- <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label> -->
+                    </ngx-dropzone-image-preview>
+                  </ngx-dropzone>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3 form-control p-0">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-user"></i>
+                  </span>
+                  <input type="text" formControlName="userName" class=" py-2 w-75" placeholder="UserName" aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+                <div *ngIf="registerForm.get('userName')?.errors&&registerForm.get('userName')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('userName')?.getError('required')">* userName is Requierd</p>
+                  <p *ngIf="registerForm.get('userName')?.getError('pattern')">* The userName must contain characters 4,8 and end with one numeric without spaces.</p>
+                </div>
+              </div>
+
+
+              <div class="col-md-6">
+
+                <div class="input-group mb-3 form-control p-0">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-at"></i>
+                  </span>
+                  <input type="email" formControlName="email" class=" py-2 w-75" placeholder="Enter Your E-mail" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div *ngIf="registerForm.get('email')?.errors&&registerForm.get('email')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('email')?.getError('required')">* Email is Requierd</p>
+                  <p *ngIf="registerForm.get('email')?.getError('pattern')">* Email Invalid Format</p>
+                </div>
+
+              </div>
+
+
+              <div class="col-md-6">
+
+                <div class="input-group mb-3 form-control p-0">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-globe"></i>
+                  </span>
+                  <input type="text" formControlName="country" class=" py-2 w-75" placeholder="Country" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div *ngIf="registerForm.get('country')?.errors&&registerForm.get('country')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('country')?.getError('required')">* Country is Requierd</p>
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3 form-control p-0">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                  </span>
+                  <input type="tel" formControlName="phoneNumber" class=" py-2 w-75" placeholder="PhoneNumber" aria-label="Username" aria-describedby="basic-addon1">
+
+                </div>
+                <div *ngIf="registerForm.get('phoneNumber')?.errors&&registerForm.get('phoneNumber')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('phoneNumber')?.getError('required')">* Phone is Requierd</p>
+                  <p *ngIf="registerForm.get('phoneNumber')?.getError('pattern')">* Accept only Egyption Phone Numbers</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3 p-0 form-control align-items-center">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input [type]="hide1? 'password': 'text'" formControlName="password" class="flex-grow-1 py-2" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+                  <span (click)="hide1 = !hide1">
+                    <i class="fa-solid" [class]="hide1? 'fa-eye-slash': 'fa-eye'"></i>
+                  </span>
+                </div>
+                <div *ngIf="registerForm.get('password')?.errors&&registerForm.get('password')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('password')?.getError('required')">* Password is Requierd</p>
+                  <p *ngIf="registerForm.get('password')?.getError('pattern')">* Must be Contain Uppercase Letter, Lowercase Letter, Numeric Value, Special Symbol(!@#$%^&*_+=-) and the total length should be between 8 - 16</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="input-group mb-3 form-control p-0 align-items-center">
+                  <span class="input-group-text span py-3 me-2" id="basic-addon1">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input [type]="hide2? 'password': 'text'" formControlName="confirmPassword" class="flex-grow-1 py-2" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1">
+                  <span (click)="hide2 = !hide2">
+                    <i class="fa-solid" [class]="hide2? 'fa-eye-slash': 'fa-eye'"></i>
+                  </span>
+                </div>
+                <div *ngIf="registerForm.get('confirmPassword')?.errors&&registerForm.get('confirmPassword')?.touched" class="warning text-danger text-center fw-bold">
+                  <p *ngIf="registerForm.get('confirmPassword')?.getError('required')">* Password is Requierd</p>
+                  <p *ngIf="registerForm.get('confirmPassword')?.getError('mismatch')">* Password confirmation Is incorrected</p>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="links text-center">
+              <a class="text-gray" routerLink="">Already Have Account? <span class="fw-bold"> Login Now </span></a>
+              <a class="text-main link" (click)="openDialog()">Have Code?</a>
+            </div>
+            <div class="text-center">
+              <button [disabled]="registerForm.invalid" class="success w-75 mt-4">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+

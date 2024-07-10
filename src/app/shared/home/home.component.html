@@ -1,0 +1,37 @@
+<section class="bg-success-main text-white px-5 mt-5 rounded-5">
+  <div class="row align-items-center justify-content-between">
+    <div class="col-md-6">
+      <div>
+        <h1 class="mb-3">Welcome <span>{{userName}}</span></h1>
+        <p>This is a welcoming screen for the entry of the application , you can now see the options</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div>
+        <img src="./assets/Images/Group 48102098.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light px-5 py-3 mt-4 rounded-5">
+  <div class="row align-items-center justify-content-between">
+    <div class="col-md-6">
+      <div>
+        <h3>Fill the <span class="main-text">Recipes</span> !</h3>
+        <p>you can now fill the meals easily using the table and form , click here and sill it with the table !</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div>
+        <button class="success-main w-100 d-flex align-items-center justify-content-center" [routerLink]="role == 'SystemUser'?'/dashboard/user/recipe-user': '/dashboard/admin/recipes'">
+          <span class="me-3">Fill Recipes</span>
+          <span><i class="fa-solid fa-arrow-right-long"></i></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</section>

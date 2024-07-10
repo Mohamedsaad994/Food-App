@@ -1,0 +1,12 @@
+<section class="p-4">
+  <div class="d-flex justify-content-between">
+    <h2>{{heading}}</h2>
+    <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <div mat-dialog-content>
+    <input class="form-control p-3" [(ngModel)]="data.name" type="text" placeholder="Enter Category Name">
+  </div>
+  <div class="text-end mt-4">
+    <button class="success-main w-25" [mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+  </div>
+</section>
